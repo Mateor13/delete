@@ -23,40 +23,45 @@ public class dele extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 estudiante est = new estudiante();
-                String url = "jdbc:mysql://localhost:3306/clase";
-                String user = "root";
-                String pass = "123456";
-                est.setCedula(ced.getText());
-                Connection conn = null;
-                PreparedStatement ps = null;
-                try{
-                    String querry = "delete from estudiantes where cedula = ?";
-                    conn = DriverManager.getConnection(url, user, pass);
-                    ps = conn.prepareStatement(querry);
-                    ps.setString(1, est.getCedula());
-                    int filas = ps.executeUpdate();
-                    if (filas>0){
-                        res.setText("El estudiante con cedula "+ est.getCedula() +" se ha eliminado correctamente");
-                        setPreferredSize(new Dimension(460,250));
-                        pack();
-                        setLocationRelativeTo(null);
-                    }else{
-                        res.setText("No se ha podido encontrar al estudiante con la cédula: "+est.getCedula());
-                        setPreferredSize(new Dimension(450,250));
-                        pack();
-                        setLocationRelativeTo(null);
-                    }
-                }catch(SQLException e1){
-                    e1.printStackTrace();
-                }finally{
-                    try{
-                        if(ps != null){
-                            ps.close();
-                        }if(conn != null){
-                            conn.close();
+                String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10720937";
+                String user = "sql10720937";
+                String pass = "DupPY6na5V";
+                if (ced.getText().isEmpty()) {
+                    res.setText("Campo vacio");
+                } else {
+                    est.setCedula(ced.getText());
+                    Connection conn = null;
+                    PreparedStatement ps = null;
+                    try {
+                        String querry = "delete from estudiantes where cedula = ?";
+                        conn = DriverManager.getConnection(url, user, pass);
+                        ps = conn.prepareStatement(querry);
+                        ps.setString(1, est.getCedula());
+                        int filas = ps.executeUpdate();
+                        if (filas > 0) {
+                            res.setText("El estudiante con cedula " + est.getCedula() + " se ha eliminado correctamente");
+                            setPreferredSize(new Dimension(460, 250));
+                            pack();
+                            setLocationRelativeTo(null);
+                        } else {
+                            res.setText("No se ha podido encontrar al estudiante con la cédula: " + est.getCedula());
+                            setPreferredSize(new Dimension(450, 250));
+                            pack();
+                            setLocationRelativeTo(null);
                         }
-                    }catch(SQLException e1){
+                    } catch (SQLException e1) {
                         e1.printStackTrace();
+                    } finally {
+                        try {
+                            if (ps != null) {
+                                ps.close();
+                            }
+                            if (conn != null) {
+                                conn.close();
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
             }

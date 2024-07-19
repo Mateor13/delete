@@ -27,9 +27,9 @@ public class edit extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 estudiante est = new estudiante();
-                String url = "jdbc:mysql://localhost:3306/clase";
-                String user = "root";
-                String pass = "123456";
+                String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10720937";
+                String user = "sql10720937";
+                String pass = "DupPY6na5V";
                 est.setCedula(ced.getText());
                 est.setNota(Double.parseDouble(n1.getText()));
                 Connection conn = null;
